@@ -1,0 +1,44 @@
+﻿@using WebApplicationEmp.Models
+@using WebApplicationEmp.Controllers
+
+@model Employee
+
+
+<h3>Edit Product</h3>
+
+ 
+<form  action="/Employee/Edit" method="post">
+    <label>Employee Id  : </label>
+    <input name="Empid" type="text" readonly value="@Model.Empid" />
+    <br/><br/>
+
+    <label>Employee Name  : </label>
+    <input name="Ename" type="text" value="@Model.Ename" />
+    <br/><br/>
+
+     <label>Employee job  : </label>
+    <input name="Ejob" type="text" value="@Model.Ejob" />
+    <br/><br/>
+
+    <label>Employee salary  : </label>
+    <input name="Esal" type="text" value="@Model.Esal" />
+    <br/><br/>
+    
+    <label>Employee dept no  : </label>
+    <input name="Edeptno" type="text" value="@Model.Edeptno" />
+    <br/><br/>
+
+    <input type="submit" value="Edit" />
+</form>
+
+
+@{
+    if(ViewBag.RequestType == "POST")
+    {
+        <h1>@ViewBag.ErrorMessage</h1>
+    }
+}
+
+
+<hr/>
+ <a href="/Employee/Index">Back to List</a>
