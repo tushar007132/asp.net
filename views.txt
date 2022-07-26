@@ -1,0 +1,194 @@
+views
+
+-------
+
+Index.cshtml
+
+-----------------------
+
+
+
+@using WebApplicationEmp.Controllers
+@using WebApplicationEmp.Models;
+
+@model List<Employee>
+
+<h3>Product Controller -- Index Page</h3>
+<hr/>
+
+@* 
+    <h3> @ViewBag.Message </h3>  
+*@
+
+<a href="/Employee/Create">Create New</a>
+
+<table border="2" width="600">
+    <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th></th>
+    </tr>
+
+    @foreach(Employee item in Model)
+    {
+         <tr>
+            <td>@item.Empid</td>
+            <td>@item.Ename</td>
+            <td>@item.Ejob</td>
+            <td>@item.Esal</td>     
+            <td>@item.Edeptno</td>     
+            <td>
+                <a href="/Employee/Details/@item.Empid">View Details</a>|
+                <a href="/Employee/Edit/@item.Empid">Edit</a> |
+                <a href="/Employee/Delete/@item.Empid">Delete</a>  
+            </td>
+         </tr>
+    }
+
+   
+</table>
+
+
+
+Edit.cshtml
+
+-----------------
+
+
+@using WebApplicationEmp.Models
+@using WebApplicationEmp.Controllers
+
+@model Employee
+
+
+<h3>Edit Product</h3>
+
+ 
+<form  action="/Employee/Edit" method="post">
+    <label>Employee Id  : </label>
+    <input name="Empid" type="text" readonly value="@Model.Empid" />
+    <br/><br/>
+
+    <label>Employee Name  : </label>
+    <input name="Ename" type="text" value="@Model.Ename" />
+    <br/><br/>
+
+     <label>Employee job  : </label>
+    <input name="Ejob" type="text" value="@Model.Ejob" />
+    <br/><br/>
+
+    <label>Employee salary  : </label>
+    <input name="Esal" type="text" value="@Model.Esal" />
+    <br/><br/>
+    
+    <label>Employee dept no  : </label>
+    <input name="Edeptno" type="text" value="@Model.Edeptno" />
+    <br/><br/>
+
+    <input type="submit" value="Edit" />
+</form>
+
+
+@{
+    if(ViewBag.RequestType == "POST")
+    {
+        <h1>@ViewBag.ErrorMessage</h1>
+    }
+}
+
+
+<hr/>
+ <a href="/Employee/Index">Back to List</a>
+
+
+
+Create.cshtml
+-------------------
+<h3>Create New Employee</h3>
+
+<form  action="/Employee/Create" method="post">
+    
+    <label>Employee Id  : </label>
+    <input name="Empid" type="text" />
+    <br/><br/>
+
+    <label>Employee Name  : </label>
+    <input name="Ename" type="text" />
+    <br/><br/>
+
+     <label>Employee job  : </label>
+    <input name="Ejob" type="text" />
+    <br/><br/>
+
+    <label>Employee salary  : </label>
+    <input name="Esal" type="text" />
+    <br/><br/>
+
+    <label>Employee Dept no  : </label>
+    <input name="Edeptno" type="text" />
+    <br/><br/>
+
+    <input type="submit" value="Create" />
+</form>
+
+
+@{
+    if(ViewBag.RequestType == "POST")
+    {
+        <h1>Employee saved successfully</h1>
+    }
+}
+
+Details.cshtml
+----------------------
+
+
+@using WebApplicationEmp.Controllers
+@using WebApplicationEmp.Models
+
+@model Employee
+
+<h3>Selected Product Details</h3>
+
+<div>
+
+    Employee Id  :  @Model.Empid  <br/>
+    Employee Name  :  @Model.Ename  <br/>
+    Employee Job  :  @Model.Ejob<br/>
+    Employee Salary  :  @Model.Esal<br/>
+    Employee Dept no  :  @Model.Edeptno<br/>
+    
+</div>
+
+<hr/>
+ <a href="/Employee/Index">Back to List</a>
+
+
+delete.cshtml
+--------------------
+@using WebApplicationEmp.Controllers
+@using WebApplicationEmp.Models
+
+@model  Employee
+
+
+<h3>Dp you want to delete this product?</h3>
+
+
+<div>
+    Product Id  :  @Model.Empid  <br/>
+    Product Name  :  @Model.Ename  <br/>
+    Unit Price  :  @Model.Ejob<br/>
+    Quantity  :  @Model.Esal<br/>
+    Quantity  :  @Model.Edeptno<br/>
+</div>
+
+<form  action="/Employee/Delete" method="post">
+     <input name="id" type="hidden" value="@Model.Empid" />
+     <input type="submit" value="Delete" />
+</form>
+
+<hr/>
+ <a href="/Employee/Index">Back to List</a>
