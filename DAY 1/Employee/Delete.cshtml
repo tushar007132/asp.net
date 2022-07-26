@@ -1,0 +1,24 @@
+﻿@using WebApplicationEmp.Controllers
+@using WebApplicationEmp.Models
+
+@model  Employee
+
+
+<h3>Dp you want to delete this product?</h3>
+
+
+<div>
+    Product Id  :  @Model.Empid  <br/>
+    Product Name  :  @Model.Ename  <br/>
+    Unit Price  :  @Model.Ejob<br/>
+    Quantity  :  @Model.Esal<br/>
+    Quantity  :  @Model.Edeptno<br/>
+</div>
+
+<form  action="/Employee/Delete" method="post">
+     <input name="id" type="hidden" value="@Model.Empid" />
+     <input type="submit" value="Delete" />
+</form>
+
+<hr/>
+ <a href="/Employee/Index">Back to List</a>
