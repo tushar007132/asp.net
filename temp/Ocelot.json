@@ -1,0 +1,28 @@
+{
+  "ReRoutes": [
+    {
+      "DownStreamPathTemplate": "/api/Driver",
+      "DownStreamSchema": "https",
+      "DownStreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44358
+        }
+      ],
+      "UpStreamPathTemplate": "/apigateway/DriverService",
+      "UpStreamHttpMethod": [ "Get", "Put", "Post" ]
+    },
+    {
+      "DownStreamPathTemplate": "/api/Passanger",
+      "DownStreamSchema": "https",
+      "DownStreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44352
+        }
+      ],
+      "UpStreamPathTemplate": "/apigateway/PassangerService",
+      "UpStreamHttpMethod": [ "Get", "Put", "Post" ]
+    }
+  ]
+}
